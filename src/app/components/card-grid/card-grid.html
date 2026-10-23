@@ -1,0 +1,5 @@
+<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+  @for (card of cards(); track card.id) {
+    <li><app-card-item [card]="card" /></li>
+  }
+</ul>
