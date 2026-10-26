@@ -8,7 +8,7 @@ import { CardBrief } from '../../models/card.model';
 export class CardItem {
   readonly card = input.required<CardBrief>();
 
-  /** Agregar nombre de archivo de la imagen. */
+  /** TCGdex devuelve la base de la URL; hay que sumar calidad y formato. */
   protected readonly imageUrl = computed(() => {
     const image = this.card().image;
     return image ? `${image}/low.webp` : null;
