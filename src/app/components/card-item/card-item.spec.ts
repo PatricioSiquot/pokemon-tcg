@@ -23,9 +23,4 @@ describe('CardItem', () => {
     expect(el.querySelector('h3')?.textContent).toContain('Pikachu');
   });
 
-  it('shows a placeholder when the card has no image', () => {
-    const el = render(makeCard({ image: undefined }));
-    expect(el.querySelector('img')).toBeNull();
-    expect(el.textContent).toContain('No image');
-  });
 });

@@ -20,6 +20,7 @@ export class CardService {
   }: CardSearchParams = {}): Observable<CardBrief[]> {
     let params = new HttpParams()
       .set('category', 'eq:Pokemon') // Regla de la app: solo mostramos cartas Pokémon (no Trainer ni Energy)
+      .set('image', 'notnull:') // Regla de la app: solo cartas con imagen
       .set('pagination:page', page)
       .set('pagination:itemsPerPage', pageSize);
 

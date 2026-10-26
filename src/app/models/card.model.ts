@@ -3,8 +3,7 @@ export interface CardBrief {
   id: string;
   localId: string;
   name: string;
-  /** Puede faltar: hay cartas sin imagen cargada. */
-  image?: string;
+  image: string;
 }
 
 /** Parámetros que acepta la búsqueda; todos opcionales. */

@@ -9,8 +9,5 @@ export class CardItem {
   readonly card = input.required<CardBrief>();
 
   /** TCGdex devuelve la base de la URL; hay que sumar calidad y formato. */
-  protected readonly imageUrl = computed(() => {
-    const image = this.card().image;
-    return image ? `${image}/low.webp` : null;
-  });
+  protected readonly imageUrl = computed(() => `${this.card().image}/low.webp`);
 }
