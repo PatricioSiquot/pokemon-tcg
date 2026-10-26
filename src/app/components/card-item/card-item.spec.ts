@@ -1,21 +1,31 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { CardBrief } from '../../models/card.model';
+import { makeCard } from '../../testing/card.fixtures';
 import { CardItem } from './card-item';
 
 describe('CardItem', () => {
-  let component: CardItem;
-  let fixture: ComponentFixture<CardItem>;
+  function render(card: CardBrief): HTMLElement {
+    const fixture = TestBed.createComponent(CardItem);
+    fixture.componentRef.setInput('card', card);
+    fixture.detectChanges();
+    return fixture.nativeElement;
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CardItem],
-    }).compileComponents();
+  beforeEach(() => TestBed.configureTestingModule({ imports: [CardItem] }));
 
-    fixture = TestBed.createComponent(CardItem);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+  it('shows the card image using the low quality webp url', () => {
+    const el = render(makeCard({ image: 'https://example.com/card' }));
+    expect(el.querySelector('img')?.getAttribute('src')).toBe('https://example.com/card/low.webp');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('shows the card name', () => {
+    const el = render(makeCard({ name: 'Pikachu' }));
+    expect(el.querySelector('h3')?.textContent).toContain('Pikachu');
+  });
+
+  it('shows a placeholder when the card has no image', () => {
+    const el = render(makeCard({ image: undefined }));
+    expect(el.querySelector('img')).toBeNull();
+    expect(el.textContent).toContain('No image');
   });
 });
