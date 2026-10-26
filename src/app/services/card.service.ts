@@ -15,6 +15,7 @@ export class CardService {
     hp,
     rarity,
     type,
+    retreat,
     page = 1,
     pageSize = 20,
   }: CardSearchParams = {}): Observable<CardBrief[]> {
@@ -29,6 +30,7 @@ export class CardService {
     if (hp) params = params.set('hp', `eq:${hp}`);
     if (rarity) params = params.set('rarity', `eq:${rarity}`);
     if (type) params = params.set('types', type);
+    if (retreat) params = params.set('retreat', `eq:${retreat}`);
 
     return this.http.get<CardBrief[]>(`${API_URL}/cards`, { params });
   }
@@ -40,4 +42,5 @@ export class CardService {
   getRarities(): Observable<string[]> {
     return this.http.get<string[]>(`${API_URL}/rarities`);
   }
+
 }

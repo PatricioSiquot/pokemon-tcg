@@ -12,6 +12,7 @@ export interface CardSearchParams {
   hp?: number;
   rarity?: string;
   type?: string;
+  retreat?: string;
   page?: number;
   pageSize?: number;
 }

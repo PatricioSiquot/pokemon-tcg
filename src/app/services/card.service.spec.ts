@@ -18,14 +18,15 @@ describe('CardService', () => {
 
   afterEach(() => http.verify());
 
-  it('sends name, type and pagination as query params', () => {
-    service.searchCards({ name: ' pikachu ', type: 'Lightning', page: 2, pageSize: 4 }).subscribe();
+  it('sends name, type, retreat and pagination as query params', () => {
+    service.searchCards({ name: ' pikachu ', type: 'Lightning', retreat: '0', page: 2, pageSize: 4 }).subscribe();
 
     const req = http.expectOne((r) => r.url.endsWith('/cards'));
     expect(req.request.params.get('category')).toBe('eq:Pokemon');
     expect(req.request.params.get('image')).toBe('notnull:');
     expect(req.request.params.get('name')).toBe('pikachu');
     expect(req.request.params.get('types')).toBe('Lightning');
+    expect(req.request.params.get('retreat')).toBe('eq:0');
     expect(req.request.params.get('pagination:page')).toBe('2');
     expect(req.request.params.get('pagination:itemsPerPage')).toBe('4');
     req.flush([]);
