@@ -23,7 +23,7 @@ describe('CardService', () => {
 
     const req = http.expectOne((r) => r.url.endsWith('/cards'));
     expect(req.request.params.get('category')).toBe('eq:Pokemon');
-    expect(req.request.params.get('image')).toBe('notnull:')
+    expect(req.request.params.get('image')).toBe('notnull:');
     expect(req.request.params.get('name')).toBe('pikachu');
     expect(req.request.params.get('types')).toBe('Lightning');
     expect(req.request.params.get('pagination:page')).toBe('2');

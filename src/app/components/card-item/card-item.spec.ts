@@ -22,5 +22,4 @@ describe('CardItem', () => {
     const el = render(makeCard({ name: 'Pikachu' }));
     expect(el.querySelector('h3')?.textContent).toContain('Pikachu');
   });
-
 });
